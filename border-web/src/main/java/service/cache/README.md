@@ -1,0 +1,1 @@
+This is a very simple cache service - a hash map in memory.  For getting the authentication piece up and running quickly.

@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+                            http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="cacheService" class="service.cache.memory.MemoryHashCacheServiceImpl">
+        <constructor-arg name="seed">
+            <map>
+                <entry key="3b693fe3-dea0-4096-9d5a-935fef8380ad" value="this-is-my-secret-key" />
+            </map>
+        </constructor-arg>
+    </bean>
+
+</beans>

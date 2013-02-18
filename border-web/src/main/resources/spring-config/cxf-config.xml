@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://cxf.apache.org/jaxrs
+                            http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+
+    <jaxrs:server id="apiServices" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="messagingApiModule"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jacksonJaxbJsonProvider"/>
+            <ref bean="apiKeyAuthenticationFilter"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+
+    <bean id="jacksonJaxbJsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
+    <bean id="apiKeyAuthenticationFilter" class="authentication.filters.ApiKeyValidationFilter">
+        <constructor-arg name="cacheService" ref="cacheService"/>
+        <constructor-arg name="checkTokenFlag" value="false"/>
+    </bean>
+
+
+</beans>

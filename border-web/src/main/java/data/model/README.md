@@ -1,0 +1,1 @@
+Externalized domain model classes go here.
